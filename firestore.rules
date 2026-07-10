@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read and write invitations, RSVPs, and gifts.
+    // In production, you can restrict writes to authenticated users, 
+    // but guests need to be able to submit RSVPs and purchase gifts.
+    match /invitations/{invitationId} {
+      allow read, write: if true;
+    }
+  }
+}

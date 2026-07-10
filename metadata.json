@@ -1,0 +1,8 @@
+{
+  "name": "Convitta - Convites Digitais",
+  "description": "Plataforma SaaS para criação e gestão de convites de casamento digitais e interativos, com RSVP integrado, lista de presentes via Pix e painel administrativo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Imperial+Script&family=Ovo&family=Rufina:ital,wght@0,400;0,700;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Scrollbar custom style */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 26, 0.2);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 26, 0.4);
+  }
+}
+
+/* Custom CSS helper animations or styles that complement Tailwind */
+.font-imperial {
+  font-family: 'Imperial Script', cursive;
+}
+
+.font-wedding-cursive {
+  font-family: 'Great Vibes', 'Alex Brush', 'Sacramento', cursive;
+}
+
+.font-wedding-serif {
+  font-family: 'Cinzel', 'Playfair Display', 'Cormorant Garamond', serif;
+}
+
+.font-editorial-serif {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+/* Custom class for the envelope 3D flap perspective effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
