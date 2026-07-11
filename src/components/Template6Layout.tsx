@@ -156,7 +156,7 @@ export default function Template6Layout({
           loop 
           playsInline 
           preload="auto"
-          poster="https://images.unsplash.com/photo-1531572753322-ad063cecc140?q=60&w=800&auto=format&fit=crop"
+          poster="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=800&auto=format&fit=crop"
           className="absolute inset-0 w-full h-full object-cover brightness-[0.92] contrast-[0.98]"
         >
           <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Italian_villa_terrace_202604231419%20(1).MP4" type="video/mp4" />

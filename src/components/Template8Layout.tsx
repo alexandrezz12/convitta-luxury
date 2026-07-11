@@ -207,7 +207,7 @@ export default function Template8Layout({
           muted
           playsInline
           preload="auto"
-          className="w-full h-full max-w-lg object-contain"
+          className="w-full h-full object-cover"
           onTimeUpdate={() => {
             const video = videoRef.current;
             if (video && video.duration && video.currentTime >= video.duration - 0.8) {
@@ -252,7 +252,7 @@ export default function Template8Layout({
             <div className="w-72 h-[450px] relative rounded-t-full overflow-hidden shadow-2xl border-4 border-[#a67d2b]/20 mb-10 bg-[#fcf9f2]">
               {/* Fallback & Loading Background Image (Guaranteed to show, beautiful romantic Swans painting) */}
               <img 
-                src="https://images.unsplash.com/photo-1601758124277-f00d6d4335b4?q=60&w=450&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=800&auto=format&fit=crop" 
                 alt="Lago de Cisnes" 
                 referrerPolicy="no-referrer"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${
@@ -267,7 +267,7 @@ export default function Template8Layout({
                 loop 
                 playsInline 
                 preload="auto"
-                poster="https://images.unsplash.com/photo-1601758124277-f00d6d4335b4?q=60&w=450&auto=format&fit=crop"
+                poster="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=800&auto=format&fit=crop"
                 onPlay={() => setIsLoopVideoReady(true)}
                 onLoadedData={() => setIsLoopVideoReady(true)}
                 onLoadedMetadata={() => setIsLoopVideoReady(true)}
