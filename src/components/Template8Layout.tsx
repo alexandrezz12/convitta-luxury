@@ -165,10 +165,10 @@ export default function Template8Layout({
               pointerEvents: envelopeState === 'closed' ? 'auto' : 'none',
             }}
           >
-            <div className="relative max-w-md w-full px-6 flex flex-col items-center text-center">
-              <div className="relative w-full aspect-[4/3] max-h-[50vh] flex items-center justify-center mb-8 bg-stone-900/5 rounded-2xl overflow-hidden">
+            <div className="relative max-w-2xl w-full px-4 flex flex-col items-center text-center">
+              <div className="relative w-full flex items-center justify-center mb-8">
                 {!isIntroImgLoaded && (
-                  <div className="absolute inset-0 bg-[#fbf5e8] animate-pulse flex items-center justify-center border border-[#a67d2b]/10 rounded-2xl">
+                  <div className="absolute inset-0 bg-[#fbf5e8] animate-pulse flex items-center justify-center border border-[#a67d2b]/10 rounded-2xl min-h-[320px]">
                     <div className="text-[#a67d2b]/40 text-xs font-serif-cinzel tracking-widest animate-pulse">Carregando Selo Real...</div>
                   </div>
                 )}
@@ -177,7 +177,7 @@ export default function Template8Layout({
                   src="https://pub-96ce671efbac4dbfbc89b044c631a913.r2.dev/ChatGPT%20Image%20Jun%2023%2C%202026%2C%2004_40_29%20PM.png"
                   alt="Abra o seu convite"
                   onLoad={() => setIsIntroImgLoaded(true)}
-                  className={`w-full h-full object-contain drop-shadow-md rounded-2xl transition-all duration-700 ease-out ${
+                  className={`w-full max-h-[65vh] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.18)] transition-all duration-700 ease-out ${
                     isIntroImgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                   draggable="false"
@@ -185,7 +185,7 @@ export default function Template8Layout({
               </div>
               <div className="flex flex-col items-center gap-3 animate-bounce">
                 <div className="w-4 h-4 border-r-2 border-t-2 border-[#a67d2b]/70 transform rotate-135"></div>
-                <span className="font-serif-cinzel text-xs tracking-[0.3em] uppercase text-[#a67d2b]/80">Toque para abrir</span>
+                <span className="font-serif-cinzel text-sm sm:text-base tracking-[0.3em] uppercase text-[#a67d2b] font-bold">Toque para abrir</span>
               </div>
             </div>
           </div>
@@ -261,19 +261,22 @@ export default function Template8Layout({
               />
 
               <video 
+                src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Swans2.mov"
                 autoPlay 
                 muted 
                 loop 
                 playsInline 
                 preload="auto"
+                poster="https://images.unsplash.com/photo-1601758124277-f00d6d4335b4?q=60&w=450&auto=format&fit=crop"
                 onPlay={() => setIsLoopVideoReady(true)}
                 onLoadedData={() => setIsLoopVideoReady(true)}
-                className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-1000 ${
-                  isLoopVideoReady ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Swans2.mov" type="video/mp4" />
-              </video>
+                onLoadedMetadata={() => setIsLoopVideoReady(true)}
+                className="w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-1000"
+                style={{
+                  opacity: isLoopVideoReady ? 1 : 0,
+                  visibility: isLoopVideoReady ? 'visible' : 'hidden'
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#fcf9f2]/40 pointer-events-none z-20"></div>
               
               {/* Soft Golden/Warm Ambient Inner Glow */}

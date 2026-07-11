@@ -130,63 +130,58 @@ export default function EnvelopeCover({
             alt=""
           />
 
-          {/* Unified Container to prevent overlap */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-30 pointer-events-none">
-            <div className="flex flex-col items-center justify-center gap-6 sm:gap-10 max-w-lg w-full">
-              {/* Typography Header on Envelope */}
-              <motion.div 
-                animate={isOpening ? { y: -150, opacity: 0 } : { y: 0, opacity: 1 }}
-                transition={{ duration: 0.9 }}
-                className="flex flex-col items-center justify-center text-center pointer-events-none"
-              >
-                <span className={`text-[10px] sm:text-xs uppercase tracking-[0.4em] font-bold mb-2 font-sans`} style={{ color: isDarkEnvelope ? accentGold : '#a8a29e' }}>CONVITE DE CASAMENTO</span>
-                <h2 
-                  className={`${fontDisplay} tracking-widest leading-tight uppercase font-medium text-3xl sm:text-5xl`}
-                  style={{ color: isDarkEnvelope ? '#fffaf8' : '#1c1917' }}
-                >
-                  {coupleName1} <span className={`italic lowercase text-2xl sm:text-4xl mx-2`} style={{ color: isDarkEnvelope ? accentGold : '#a8a29e' }}>&amp;</span> {coupleName2}
-                </h2>
-                <div className={`w-12 h-[1px] mt-4 mb-3`} style={{ backgroundColor: isDarkEnvelope ? `${accentGold}50` : '#d6d3d1' }} />
-                <span className={`text-xs sm:text-sm tracking-[0.25em] font-medium uppercase font-sans`} style={{ color: isDarkEnvelope ? '#fffaf8' : '#78716c' }}>
-                  {formatDate(dateString)}
-                </span>
-              </motion.div>
+          {/* Typography Header on Envelope - absolute positioned and lifted higher */}
+          <motion.div 
+            animate={isOpening ? { y: -300, opacity: 0 } : { y: 0, opacity: 1 }}
+            transition={{ duration: 0.9 }}
+            className="absolute inset-x-0 top-10 sm:top-14 flex flex-col items-center justify-center text-center px-6 z-30 pointer-events-none"
+          >
+            <span className={`text-[9px] sm:text-[10px] uppercase tracking-[0.4em] font-bold mb-1 sm:mb-2 font-sans`} style={{ color: isDarkEnvelope ? accentGold : '#a8a29e' }}>CONVITE DE CASAMENTO</span>
+            <h2 
+              className={`${fontDisplay} tracking-widest leading-tight uppercase font-medium text-2xl sm:text-4xl`}
+              style={{ color: isDarkEnvelope ? '#fffaf8' : '#1c1917' }}
+            >
+              {coupleName1} <span className={`italic lowercase text-xl sm:text-3xl mx-2`} style={{ color: isDarkEnvelope ? accentGold : '#a8a29e' }}>&amp;</span> {coupleName2}
+            </h2>
+            <div className={`w-10 h-[1px] mt-2 sm:mt-3 mb-2`} style={{ backgroundColor: isDarkEnvelope ? `${accentGold}50` : '#d6d3d1' }} />
+            <span className={`text-[11px] sm:text-xs tracking-[0.25em] font-medium uppercase font-sans`} style={{ color: isDarkEnvelope ? '#fffaf8' : '#78716c' }}>
+              {formatDate(dateString)}
+            </span>
+          </motion.div>
 
-              {/* Floating opening button */}
-              <motion.div 
-                animate={isOpening ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
-                transition={{ duration: 0.7 }}
-                className="flex flex-col items-center pointer-events-auto"
+          {/* Floating opening button - absolutely centered */}
+          <motion.div 
+            animate={isOpening ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-none"
+          >
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
+              onClick={handleInteractiveOpen}
+              className="group flex flex-col items-center cursor-pointer p-6 focus:outline-none pointer-events-auto"
+            >
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
+                {!isSealLoaded && (
+                  <div className="absolute inset-0 bg-stone-200/10 rounded-full animate-pulse border border-amber-500/10" />
+                )}
+                <img 
+                  src="https://static.tildacdn.net/tild3435-3731-4464-a537-636664626563/ChatGPT_Image_Aug_3_.png"
+                  alt="Abrir convite"
+                  onLoad={() => setIsSealLoaded(true)}
+                  className={`w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(120,80,20,0.45)] transition-all duration-500 group-hover:scale-105 ${
+                    isSealLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                />
+              </div>
+              <span 
+                className={`text-xs sm:text-sm tracking-[0.25em] mt-3 font-medium uppercase transition-all group-hover:tracking-[0.3em] font-serif font-bold`}
+                style={{ color: isDarkEnvelope ? accentGold : '#2c4b5c' }}
               >
-                <motion.button
-                  whileHover={{ scale: 1.06 }}
-                  whileTap={{ scale: 0.94 }}
-                  onClick={handleInteractiveOpen}
-                  className="group flex flex-col items-center cursor-pointer p-4 focus:outline-none"
-                >
-                  <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-                    {!isSealLoaded && (
-                      <div className="absolute inset-0 bg-stone-200/10 rounded-full animate-pulse border border-amber-500/10" />
-                    )}
-                    <img 
-                      src="https://static.tildacdn.net/tild3435-3731-4464-a537-636664626563/ChatGPT_Image_Aug_3_.png"
-                      alt="Abrir convite"
-                      onLoad={() => setIsSealLoaded(true)}
-                      className={`w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(120,80,20,0.45)] transition-all duration-500 group-hover:scale-105 ${
-                        isSealLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}
-                    />
-                  </div>
-                  <span 
-                    className={`text-xs sm:text-sm tracking-[0.25em] mt-3 font-medium uppercase transition-all group-hover:tracking-[0.3em] font-serif font-bold`}
-                    style={{ color: isDarkEnvelope ? accentGold : '#2c4b5c' }}
-                  >
-                    {isDarkEnvelope ? 'Click to open' : 'Clique para abrir'}
-                  </span>
-                </motion.button>
-              </motion.div>
-            </div>
-          </div>
+                {isDarkEnvelope ? 'Click to open' : 'Clique para abrir'}
+              </span>
+            </motion.button>
+          </motion.div>
         </div>
       ) : (
         <motion.div 
