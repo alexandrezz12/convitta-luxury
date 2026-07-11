@@ -64,7 +64,6 @@ export default function Template8Layout({
   const [envelopeState, setEnvelopeState] = useState<'closed' | 'playing-video' | 'revealed'>('closed');
   const [isPlaying, setIsPlaying] = useState(false);
   const [showRsvpModal, setShowRsvpModal] = useState(false);
-  const [isLoopVideoReady, setIsLoopVideoReady] = useState(false);
   const [isIntroImgLoaded, setIsIntroImgLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -250,16 +249,6 @@ export default function Template8Layout({
             
             {/* Swans Arch Background Loop */}
             <div className="w-72 h-[450px] relative rounded-t-full overflow-hidden shadow-2xl border-4 border-[#a67d2b]/20 mb-10 bg-[#fcf9f2]">
-              {/* Fallback & Loading Background Image (Guaranteed to show, beautiful romantic Swans painting) */}
-              <img 
-                src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=800&auto=format&fit=crop" 
-                alt="Lago de Cisnes" 
-                referrerPolicy="no-referrer"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${
-                  isLoopVideoReady ? 'opacity-40' : 'opacity-100'
-                }`}
-              />
-
               <video 
                 src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Swans2.mov"
                 autoPlay 
@@ -267,15 +256,7 @@ export default function Template8Layout({
                 loop 
                 playsInline 
                 preload="auto"
-                poster="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?q=80&w=800&auto=format&fit=crop"
-                onPlay={() => setIsLoopVideoReady(true)}
-                onLoadedData={() => setIsLoopVideoReady(true)}
-                onLoadedMetadata={() => setIsLoopVideoReady(true)}
-                className="w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-1000"
-                style={{
-                  opacity: isLoopVideoReady ? 1 : 0,
-                  visibility: isLoopVideoReady ? 'visible' : 'hidden'
-                }}
+                className="w-full h-full object-cover absolute inset-0 z-10"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#fcf9f2]/40 pointer-events-none z-20"></div>
               

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 
@@ -49,6 +49,21 @@ export default function EnvelopeCover({
   const [isOpening, setIsOpening] = useState(false);
   const [isSealLoaded, setIsSealLoaded] = useState(false);
 
+  // Preload flap images for seamless instant display
+  useEffect(() => {
+    const imagesToPreload = [
+      "https://static.tildacdn.net/tild6338-3733-4431-a363-306634383864/Polygon_4.png",
+      "https://static.tildacdn.net/tild3636-6566-4132-b665-343766326335/Polygon_3.png",
+      "https://static.tildacdn.net/tild3762-3738-4361-b134-333538333135/Polygon_1_3.png",
+      "https://static.tildacdn.net/tild6262-6339-4933-b833-343039643037/Polygon_2_1.png",
+      "https://static.tildacdn.net/tild3435-3731-4464-a537-636664626563/ChatGPT_Image_Aug_3_.png"
+    ];
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   const handleInteractiveOpen = () => {
     if (isOpening) return;
     setIsOpening(true);
@@ -68,8 +83,8 @@ export default function EnvelopeCover({
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-4 sm:p-8 overflow-hidden bg-stone-100"
-      style={{ backgroundColor: isDarkEnvelope ? currentBg : `${bgColor}F0` }}
+      className="min-h-screen flex items-center justify-center p-4 sm:p-8 overflow-hidden"
+      style={{ backgroundColor: (templateId === 'template-6' || isDarkEnvelope) ? currentBg : bgColor }}
       id="envelope-wrapper"
     >
       {(templateId === 'template-6' || isDarkEnvelope) ? (
