@@ -102,7 +102,7 @@ export default function Template5Layout({
     invitation.historyImageUrl.includes('noroot')
   );
   const historyImageToUse = (isBabyFeet || !invitation.historyImageUrl) 
-    ? "https://i.pinimg.com/1200x/72/ce/bc/72cebc1ca32f726bc680b8900278d6fb.jpg" 
+    ? "https://i.pinimg.com/1200x/ed/11/e8/ed11e804fae8edbeefff1389cc18ead7.jpg" 
     : invitation.historyImageUrl;
 
   const formatName = (name: string) => {

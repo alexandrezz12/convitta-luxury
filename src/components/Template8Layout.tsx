@@ -65,6 +65,7 @@ export default function Template8Layout({
   const [isPlaying, setIsPlaying] = useState(false);
   const [showRsvpModal, setShowRsvpModal] = useState(false);
   const [isLoopVideoReady, setIsLoopVideoReady] = useState(false);
+  const [isIntroImgLoaded, setIsIntroImgLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -143,7 +144,6 @@ export default function Template8Layout({
     <div className="min-h-screen bg-[#f9f0e0] text-[#6c513f] font-sans antialiased relative overflow-x-hidden">
       {/* Dynamic Font Styling Injection */}
       <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
         .font-serif-cinzel { font-family: 'Cinzel', Georgia, serif; }
         .font-sans-inter { font-family: 'Inter', system-ui, sans-serif; }
       ` }} />
@@ -166,13 +166,23 @@ export default function Template8Layout({
             }}
           >
             <div className="relative max-w-md w-full px-6 flex flex-col items-center text-center">
-              <img
-                id="weiImg"
-                src="https://pub-96ce671efbac4dbfbc89b044c631a913.r2.dev/ChatGPT%20Image%20Jun%2023%2C%202026%2C%2004_40_29%20PM.png"
-                alt="Abra o seu convite"
-                className="w-full max-h-[50vh] object-contain drop-shadow-md rounded-2xl mb-8"
-                draggable="false"
-              />
+              <div className="relative w-full aspect-[4/3] max-h-[50vh] flex items-center justify-center mb-8 bg-stone-900/5 rounded-2xl overflow-hidden">
+                {!isIntroImgLoaded && (
+                  <div className="absolute inset-0 bg-[#fbf5e8] animate-pulse flex items-center justify-center border border-[#a67d2b]/10 rounded-2xl">
+                    <div className="text-[#a67d2b]/40 text-xs font-serif-cinzel tracking-widest animate-pulse">Carregando Selo Real...</div>
+                  </div>
+                )}
+                <img
+                  id="weiImg"
+                  src="https://pub-96ce671efbac4dbfbc89b044c631a913.r2.dev/ChatGPT%20Image%20Jun%2023%2C%202026%2C%2004_40_29%20PM.png"
+                  alt="Abra o seu convite"
+                  onLoad={() => setIsIntroImgLoaded(true)}
+                  className={`w-full h-full object-contain drop-shadow-md rounded-2xl transition-all duration-700 ease-out ${
+                    isIntroImgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  draggable="false"
+                />
+              </div>
               <div className="flex flex-col items-center gap-3 animate-bounce">
                 <div className="w-4 h-4 border-r-2 border-t-2 border-[#a67d2b]/70 transform rotate-135"></div>
                 <span className="font-serif-cinzel text-xs tracking-[0.3em] uppercase text-[#a67d2b]/80">Toque para abrir</span>

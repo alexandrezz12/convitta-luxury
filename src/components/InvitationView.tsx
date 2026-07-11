@@ -33,6 +33,7 @@ export default function InvitationView({
   const [isOpened, setIsOpened] = useState(invitation.templateId === 'template-8' ? true : false);
   const [soundOn, setSoundOn] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: false });
+  const [isHistoryImgLoaded, setIsHistoryImgLoaded] = useState(false);
 
   // Sync isOpened when templateId changes
   useEffect(() => {
@@ -503,11 +504,19 @@ export default function InvitationView({
                   </h3>
                   
                   {invitation.historyImageUrl && (
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-stone-200 shadow-md">
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-stone-100">
+                      {!isHistoryImgLoaded && (
+                        <div className="absolute inset-0 bg-stone-200 animate-pulse flex items-center justify-center">
+                          <span className="text-stone-400 text-xs font-sans">Carregando imagem...</span>
+                        </div>
+                      )}
                       <img 
                         src={invitation.historyImageUrl} 
                         alt="Nossa História" 
-                        className="w-full h-full object-cover"
+                        onLoad={() => setIsHistoryImgLoaded(true)}
+                        className={`w-full h-full object-cover transition-opacity duration-700 ${
+                          isHistoryImgLoaded ? 'opacity-100' : 'opacity-0'
+                        }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-stone-950/20 to-transparent" />
                     </div>

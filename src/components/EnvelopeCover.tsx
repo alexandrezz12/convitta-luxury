@@ -47,6 +47,7 @@ export default function EnvelopeCover({
   };
 
   const [isOpening, setIsOpening] = useState(false);
+  const [isSealLoaded, setIsSealLoaded] = useState(false);
 
   const handleInteractiveOpen = () => {
     if (isOpening) return;
@@ -160,11 +161,19 @@ export default function EnvelopeCover({
               onClick={handleInteractiveOpen}
               className="group flex flex-col items-center cursor-pointer p-6 focus:outline-none"
             >
-              <img 
-                src="https://static.tildacdn.net/tild3435-3731-4464-a537-636664626563/ChatGPT_Image_Aug_3_.png"
-                alt="Abrir convite"
-                className="w-36 h-36 sm:w-44 sm:h-44 object-contain drop-shadow-[0_15px_30px_rgba(120,80,20,0.45)] transition-transform duration-300 group-hover:scale-105"
-              />
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
+                {!isSealLoaded && (
+                  <div className="absolute inset-0 bg-stone-200/10 rounded-full animate-pulse border border-amber-500/10" />
+                )}
+                <img 
+                  src="https://static.tildacdn.net/tild3435-3731-4464-a537-636664626563/ChatGPT_Image_Aug_3_.png"
+                  alt="Abrir convite"
+                  onLoad={() => setIsSealLoaded(true)}
+                  className={`w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(120,80,20,0.45)] transition-all duration-500 group-hover:scale-105 ${
+                    isSealLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                />
+              </div>
               <span 
                 className={`text-xs sm:text-sm tracking-[0.25em] mt-3 font-medium uppercase transition-all group-hover:tracking-[0.3em] font-serif font-bold`}
                 style={{ color: isDarkEnvelope ? accentGold : '#2c4b5c' }}
