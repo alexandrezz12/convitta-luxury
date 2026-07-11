@@ -52,8 +52,24 @@ Estou criando meu convite no painel agora mesmo! Aguardo as instruções para at
     setTimeout(() => {
       setIsProcessing(false);
       
-      // Open WhatsApp in a new tab
-      window.open(whatsappUrl, '_blank');
+      // Open WhatsApp (with popup blocker prevention and mobile optimization)
+      let opened = false;
+      try {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (!isMobile) {
+          const win = window.open(whatsappUrl, '_blank');
+          if (win) {
+            opened = true;
+          }
+        }
+      } catch (e) {
+        console.error("Popup blocked:", e);
+      }
+
+      // If blocked or on a mobile device, use native redirection
+      if (!opened) {
+        window.location.href = whatsappUrl;
+      }
 
       // Confetti celebration!
       confetti({
