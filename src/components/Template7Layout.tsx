@@ -343,12 +343,6 @@ export default function Template7Layout({
           </div>
 
           <div className="bg-[#f8f0ed] text-[#292f38] p-8 sm:p-12 rounded-3xl shadow-xl space-y-8 relative overflow-hidden border border-white/40">
-            {/* Side Bouquet on the bottom */}
-            <img 
-              src="https://static.tildacdn.net/tild3163-6362-4237-b033-376135303061/f1bedaf8-974d-44fd-9.png" 
-              className="absolute right-0 bottom-0 w-36 pointer-events-none opacity-[0.12] translate-x-2"
-              alt=""
-            />
 
             <div className="space-y-6">
               {timelineEvents.map((ev, idx) => (
@@ -388,7 +382,7 @@ export default function Template7Layout({
           </div>
           
           <div className="col-span-6 sm:col-span-4 overflow-hidden rounded-2xl shadow-lg border border-white/10 aspect-[4/5]">
-            <img src={historyImageToUse} referrerPolicy="no-referrer" className="w-full h-full object-cover hover:scale-103 transition-transform duration-700" alt="" />
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" referrerPolicy="no-referrer" className="w-full h-full object-cover hover:scale-103 transition-transform duration-700" alt="" />
           </div>
           <div className="col-span-12 sm:col-span-8 overflow-hidden rounded-2xl shadow-lg border border-white/10 aspect-[16/10]">
             <img src="https://static.tildacdn.net/tild6331-3164-4564-b831-356536373330/c2665f5d-6a8b-4797-9.png" className="w-full h-full object-cover hover:scale-103 transition-transform duration-700" alt="" />
